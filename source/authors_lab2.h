@@ -5,7 +5,7 @@
 #define AUTHORS_TWO_C "Sam Diehl"
 #define AUTHORS_TWO_D "Sam Diehl"
 
-#define AUTHORS_THREE_B ""
+#define AUTHORS_THREE_B "Paul Klein"
 #define AUTHORS_THREE_C ""
 #define AUTHORS_THREE_D ""
 #define AUTHORS_THREE_E ""

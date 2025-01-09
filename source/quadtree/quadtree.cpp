@@ -6,10 +6,24 @@
 #include <stdexcept>
 #include <omp.h>
 
-Quadtree::Quadtree(Universe& universe, BoundingBox bounding_box, std::int8_t construct_mode){
+Quadtree::Quadtree(Universe& universe, BoundingBox bounding_box, std::int8_t construct_mode) {
+    QuadtreeNode root_node = QuadtreeNode(bounding_box);
+    root = &root_node;
+    std::vector<int32_t> body_indices = {};
+    if (construct_mode == 0) {
+        Quadtree::construct(universe, bounding_box, body_indices);
+    }
+    else if (construct_mode == 1) {
+        Quadtree::construct_task(universe, bounding_box, body_indices);
+    }
+    else if (construct_mode == 2) {
+        Quadtree::construct_task_with_cutoff(universe, bounding_box, body_indices);
+    }
 }
 
 Quadtree::~Quadtree(){
+    delete root;
+
 }
 
 void Quadtree::calculate_cumulative_masses(){
