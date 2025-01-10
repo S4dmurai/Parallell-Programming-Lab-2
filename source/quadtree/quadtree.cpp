@@ -53,8 +53,16 @@ std::vector<QuadtreeNode*> Quadtree::construct(Universe& universe, BoundingBox B
         if (!sub_body_indices.empty()) {
             QuadtreeNode* new_child = new QuadtreeNode(sub_BB);
             resulting_children.push_back(new_child);
-            //If only one body in child, update body identifier, else recursive construction.
-            if (sub_body_indices.size() == 1) { new_child->body_identifier = sub_body_indices[0]; }
+            //If only one body in child (thus a leaf node), update body identifier, center of mass and cumulative mass, else recursive construction.
+            //Cumulative Mass and Center of Mass are the mass/position of the sole body
+            if (sub_body_indices.size() == 1) {
+                new_child->body_identifier = sub_body_indices[0]; 
+                new_child->cumulative_mass = universe.weights[sub_body_indices[0]];
+                new_child->cumulative_mass_ready = true;
+                new_child->center_of_mass = universe.positions[sub_body_indices[0]];
+                new_child->center_of_mass_ready = true;
+
+            }
             else { new_child->children = construct(universe, sub_BB, sub_body_indices); }
         }
         
