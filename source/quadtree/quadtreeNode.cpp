@@ -10,6 +10,7 @@ double QuadtreeNode::calculate_node_cumulative_mass(){
 QuadtreeNode::QuadtreeNode(BoundingBox arg_bounding_box){
     bounding_box = arg_bounding_box;
     children = {};
+    body_identifier = -1;
 }
 
 QuadtreeNode::~QuadtreeNode(){
