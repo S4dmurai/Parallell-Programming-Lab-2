@@ -12,9 +12,9 @@
 #define AUTHORS_THREE_F ""
 #define AUTHORS_THREE_G ""
 
-#define AUTHORS_FOUR_A ""
-#define AUTHORS_FOUR_B ""
-#define AUTHORS_FOUR_C ""
+#define AUTHORS_FOUR_A "Sam Diehl"
+#define AUTHORS_FOUR_B "Sam Diehl"
+#define AUTHORS_FOUR_C "Sam Diehl"
 
 #define AUTHORS_FIVE_A ""
 #define AUTHORS_FIVE_B ""
