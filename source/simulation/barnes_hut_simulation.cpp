@@ -50,7 +50,6 @@ void BarnesHutSimulation::get_relevant_nodes(Universe& universe, Quadtree& quadt
 		    Vector2d<double> direction_vector = relevant_nodes[i]->center_of_mass - body_position;
             double distance = sqrt(pow(direction_vector[0], 2) + pow(direction_vector[1], 2));
             double theta = relevant_nodes[i]->bounding_box.get_diagonal() / distance;
-            std::cout << theta << "\n" << relevant_nodes.size() << "\n";
 		    if (theta < threshold_theta) {
                 i++;
 		    }

@@ -16,5 +16,5 @@
 #define AUTHORS_FOUR_B "Sam Diehl"
 #define AUTHORS_FOUR_C "Sam Diehl"
 
-#define AUTHORS_FIVE_A ""
-#define AUTHORS_FIVE_B ""
+#define AUTHORS_FIVE_A "Sam Diehl"
+#define AUTHORS_FIVE_B "Sam Diehl"
