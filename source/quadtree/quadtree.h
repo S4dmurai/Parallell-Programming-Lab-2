@@ -11,7 +11,7 @@ public:
 
     std::vector<QuadtreeNode*> construct(Universe& universe, BoundingBox BB, std::vector<std::int32_t> body_indices);
     std::vector<QuadtreeNode*> construct_task(Universe& universe, BoundingBox BB, std::vector<std::int32_t> body_indices);
-    std::vector<QuadtreeNode*> construct_task_with_cutoff(Universe& universe, BoundingBox& BB, std::vector<std::int32_t>& body_indices);
+    std::vector<QuadtreeNode*> construct_task_with_cutoff(Universe& universe, BoundingBox BB, std::vector<std::int32_t> body_indices);
 
     void calculate_cumulative_masses();
     void calculate_center_of_mass();
