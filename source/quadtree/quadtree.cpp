@@ -333,7 +333,7 @@ std::vector<QuadtreeNode*> Quadtree::construct_task(Universe& universe, Bounding
 }
 
 std::vector<QuadtreeNode*> Quadtree::construct_task_with_cutoff(Universe& universe, BoundingBox BB, std::vector<std::int32_t> body_indices) {
-    uint32_t const CUTOFF = 1000;
+    uint32_t const CUTOFF = 1000;//TestCutoff, subject to change
     //Init possible children as NONE/Nullpointer to later be merged into resulting_children
     QuadtreeNode* q0 = nullptr;
     QuadtreeNode* q1 = nullptr;

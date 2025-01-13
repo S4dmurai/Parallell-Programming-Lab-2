@@ -8,7 +8,7 @@
 #define AUTHORS_THREE_B "Paul Klein"
 #define AUTHORS_THREE_C "Paul Klein"
 #define AUTHORS_THREE_D "Paul Klein"
-#define AUTHORS_THREE_E ""
+#define AUTHORS_THREE_E "Paul Klein"
 #define AUTHORS_THREE_F "Paul Klein"
 #define AUTHORS_THREE_G "Paul Klein"
 
