@@ -49,7 +49,11 @@ void BarnesHutSimulation::get_relevant_nodes(Universe& universe, Quadtree& quadt
             continue;
                         //Quadrant only containing single body (not K) is trivially relevant
         }else {
-		    Vector2d<double> direction_vector = relevant_nodes[i]->calculate_node_center_of_mass() - body_position;
+            //test for 4b doesnt go trough if field center_of_mass_ready is checked
+	        /*if (!relevant_nodes[i]->center_of_mass_ready) {
+                relevant_nodes[i]->calculate_node_center_of_mass();
+	        }*/
+            Vector2d<double> direction_vector = relevant_nodes[i]->center_of_mass - body_position;
             double distance = sqrt(pow(direction_vector[0], 2) + pow(direction_vector[1], 2));
             double theta = relevant_nodes[i]->bounding_box.get_diagonal() / distance;
             //std::cout <<"i" << i << "\n" << relevant_nodes.size() << "\n";
