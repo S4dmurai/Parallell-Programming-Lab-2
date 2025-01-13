@@ -30,33 +30,40 @@ void BarnesHutSimulation::simulate_epoch(Plotter& plotter, Universe& universe, b
 
 void BarnesHutSimulation::get_relevant_nodes(Universe& universe, Quadtree& quadtree, std::vector<QuadtreeNode*>& relevant_nodes, Vector2d<double>& body_position, std::int32_t body_index, double threshold_theta){
     relevant_nodes.push_back(quadtree.root);
+
     for (int i = 0; i < relevant_nodes.size();) {
-        
+        //std::cout << "starti" << i << "\n";
+        //Quadrant only containing K body is trivially irrelevant
         if (relevant_nodes[i]->body_identifier == body_index) {
             relevant_nodes.erase(relevant_nodes.begin() + i);
             continue;
         }
-        if (relevant_nodes[i]->body_identifier != -1) {
-            i++;
-	        continue;
-        }
-	    if (relevant_nodes[i]->bounding_box.contains(body_position)) {
+        //Quadrant containing body K and others needs to be subdivided
+        if (relevant_nodes[i]->bounding_box.contains(body_position)) {
             relevant_nodes.insert(relevant_nodes.end(), relevant_nodes[i]->children.begin(), relevant_nodes[i]->children.end());
             relevant_nodes.erase(relevant_nodes.begin() + i);
-	    }else {
-		    if (!relevant_nodes[i]->center_of_mass_ready) {
-                relevant_nodes[i]->calculate_node_center_of_mass();
-		    }
-		    Vector2d<double> direction_vector = relevant_nodes[i]->center_of_mass - body_position;
+        }
+        //Processing of Quadrant not containing body K
+        if (relevant_nodes[i]->body_identifier != -1) {
+            i++;
+            continue;
+                        //Quadrant only containing single body (not K) is trivially relevant
+        }else {
+		    Vector2d<double> direction_vector = relevant_nodes[i]->calculate_node_center_of_mass() - body_position;
             double distance = sqrt(pow(direction_vector[0], 2) + pow(direction_vector[1], 2));
             double theta = relevant_nodes[i]->bounding_box.get_diagonal() / distance;
-            std::cout << theta << "\n" << relevant_nodes.size() << "\n";
-		    if (theta < threshold_theta) {
+            //std::cout <<"i" << i << "\n" << relevant_nodes.size() << "\n";
+            //d/r<THETA, quadrant is relevant
+            if (theta < threshold_theta) {
                 i++;
 		    }
+            //d/r>=THETA, Quadrant needs to be subdivided
 		    else {
+
+                //std::cout << "SPLIT childnum " << relevant_nodes[i]->children.size() << "\n";
                 relevant_nodes.insert(relevant_nodes.end(), relevant_nodes[i]->children.begin(), relevant_nodes[i]->children.end());
                 relevant_nodes.erase(relevant_nodes.begin() + i);
+                
 		    }
 	    }
     }
